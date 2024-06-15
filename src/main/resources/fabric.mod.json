@@ -1,0 +1,54 @@
+{
+	"schemaVersion": 1,
+	"id": "radiolampengine",
+	"version": "${version}",
+	"name": "RadioLampEngine",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/radiolampengine/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "dev.somichev.RadioLampEngine",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "dev.somichev.RadioLampEngineClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "dev.somichev.RadioLampEngineDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"radiolampengine.mixins.json",
+		{
+			"config": "radiolampengine.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
