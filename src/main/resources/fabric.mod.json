@@ -3,15 +3,14 @@
 	"id": "radiolampengine",
 	"version": "${version}",
 	"name": "RadioLampEngine",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "July but turbomega",
 	"authors": [
-		"Me!"
+		"somichev.dev"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://somichev.dev"
 	},
-	"license": "CC0-1.0",
+	"license": "All rights reserved",
 	"icon": "assets/radiolampengine/icon.png",
 	"environment": "*",
 	"entrypoints": {
