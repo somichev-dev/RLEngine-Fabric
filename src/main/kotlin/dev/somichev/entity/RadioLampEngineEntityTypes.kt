@@ -27,9 +27,13 @@ object RadioLampEngineEntityTypes {
             .maxTrackingRange(10)
             .build()
     )
+    val corpseEntity: EntityType<CorpseEntity> = Registry.register(
+        Registries.ENTITY_TYPE,
+        CorpseEntity.id,
+        EntityType.Builder.create(::CorpseEntity, SpawnGroup.MISC).dimensions(1f, 1f).maxTrackingRange(8).build()
+    )
 
-    fun init(){
-        PolymerEntityUtils.registerType(halfBrickEntity)
-        PolymerEntityUtils.registerType(flyingBoat)
+    fun init() {
+        PolymerEntityUtils.registerType(halfBrickEntity, flyingBoat, corpseEntity)
     }
 }
