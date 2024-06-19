@@ -1,4 +1,4 @@
-package dev.somichev.item
+package dev.somichev.item.transports
 
 import dev.somichev.RadioLampEngine
 import eu.pb4.polymer.core.api.item.SimplePolymerItem

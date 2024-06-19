@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.Hand
@@ -21,17 +22,8 @@ class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.ite
         val id = RadioLampEngine.id("moon_dust")
         val model = PolymerResourcePackUtils.requestModel(Items.WHITE_DYE, id.withPrefixedPath("item/"))
     }
-    /*
-        private val effects = listOf(
-        PotionEffect(PotionEffectType.NIGHT_VISION, 20*60*10, 0),
-        PotionEffect(PotionEffectType.GLOWING, 20*60*10, 0),
-        PotionEffect(PotionEffectType.SATURATION, 20*60*10, 0),
-        PotionEffect(PotionEffectType.JUMP, 20*60*10, 0),
-        PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*60*10, 1),
-        PotionEffect(PotionEffectType.REGENERATION, 20*60*10, 0),
-        PotionEffect(PotionEffectType.SPEED, 20*60*10, 1),
-    )
-     */
+
+    override fun getPolymerCustomModelData(itemStack: ItemStack?, player: ServerPlayerEntity?): Int = model.value()
     data class effectData(val effect: RegistryEntry<StatusEffect>, val duration: Int, val amplifier: Int)
     val effects = listOf(
         effectData(StatusEffects.NIGHT_VISION, 20*60*10, 0),
@@ -57,7 +49,8 @@ class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.ite
         effects.forEach {
             user.addStatusEffect(StatusEffectInstance(it.effect, it.duration, it.amplifier))
         }
+        itemStack.count -= 1
 
-        return TypedActionResult.consume(itemStack)
+        return TypedActionResult.success(itemStack)
     }
 }

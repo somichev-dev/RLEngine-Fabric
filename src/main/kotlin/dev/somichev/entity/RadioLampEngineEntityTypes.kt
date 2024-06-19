@@ -1,13 +1,14 @@
 package dev.somichev.entity
 
 import dev.somichev.entity.projectile.thrown.HalfBrickEntity
+import dev.somichev.entity.rideable.FlyingBoatEntity
 import eu.pb4.polymer.core.api.entity.PolymerEntityUtils
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 
-object RadioLampEntityTypes {
+object RadioLampEngineEntityTypes {
     val halfBrickEntity: EntityType<HalfBrickEntity> = Registry.register(
         Registries.ENTITY_TYPE,
         HalfBrickEntity.id,
@@ -17,8 +18,18 @@ object RadioLampEntityTypes {
             .trackingTickInterval(10)
             .build()
     )
+    val flyingBoat: EntityType<FlyingBoatEntity> = Registry.register(
+        Registries.ENTITY_TYPE,
+        FlyingBoatEntity.id,
+        EntityType.Builder.create(::FlyingBoatEntity, SpawnGroup.MISC)
+            .dimensions(1.375f, 0.5625f)
+            .eyeHeight(0.5625f)
+            .maxTrackingRange(10)
+            .build()
+    )
 
     fun init(){
         PolymerEntityUtils.registerType(halfBrickEntity)
+        PolymerEntityUtils.registerType(flyingBoat)
     }
 }

@@ -1,7 +1,7 @@
 package dev.somichev.entity.projectile.thrown
 
 import dev.somichev.RadioLampEngine
-import dev.somichev.entity.RadioLampEntityTypes
+import dev.somichev.entity.RadioLampEngineEntityTypes
 import dev.somichev.item.HalfBrick
 import dev.somichev.item.RadioLampEngineItems
 import eu.pb4.polymer.core.api.entity.PolymerEntity
@@ -22,8 +22,8 @@ class HalfBrickEntity : ThrownItemEntity, PolymerEntity {
     }
 
     constructor(type: EntityType<HalfBrickEntity>, world: World) : super(type, world)
-    constructor(world: World, owner: LivingEntity) : super(RadioLampEntityTypes.halfBrickEntity, owner, world)
-    constructor(world: World, x: Double, y: Double, z: Double) : super(RadioLampEntityTypes.halfBrickEntity, x, y, z, world)
+    constructor(world: World, owner: LivingEntity) : super(RadioLampEngineEntityTypes.halfBrickEntity, owner, world)
+    constructor(world: World, x: Double, y: Double, z: Double) : super(RadioLampEngineEntityTypes.halfBrickEntity, x, y, z, world)
 
     override fun handleStatus(status: Byte) {
         if (status.toInt() == 3) {
@@ -59,6 +59,6 @@ class HalfBrickEntity : ThrownItemEntity, PolymerEntity {
         }
     }
 
-    override fun getDefaultItem(): HalfBrick = RadioLampEngineItems.items["halfBrick"] as HalfBrick
+    override fun getDefaultItem(): HalfBrick = RadioLampEngineItems.halfBrick
     override fun getPolymerEntityType(player: ServerPlayerEntity): EntityType<EggEntity> = EntityType.EGG
 }

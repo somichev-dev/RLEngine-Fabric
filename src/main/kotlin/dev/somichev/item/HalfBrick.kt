@@ -21,7 +21,7 @@ import kotlin.math.max
 class HalfBrick: EggItem(Settings().maxCount(64)), PolymerItem {
     companion object{
         val id = RadioLampEngine.id("half_brick")
-        val model = PolymerResourcePackUtils.requestModel(Items.EGG, id)
+        val model = PolymerResourcePackUtils.requestModel(Items.EGG, id.withPrefixedPath("item/"))
     }
 
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
