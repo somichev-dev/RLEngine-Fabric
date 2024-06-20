@@ -19,7 +19,7 @@ import kotlin.random.Random
 class Plitka : SimplePolymerItem(Settings().maxCount(1), model.item()) {
     companion object {
         val id = RadioLampEngine.id("depers_plitka")
-        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))
+        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/totems/"))
     }
     override fun getPolymerCustomModelData(itemStack: ItemStack?, player: ServerPlayerEntity?) = model.value()
     override fun inventoryTick(stack: ItemStack?, world: World?, entity: Entity?, slot: Int, selected: Boolean) {

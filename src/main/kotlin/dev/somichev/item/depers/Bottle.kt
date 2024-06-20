@@ -15,7 +15,7 @@ import net.minecraft.world.World
 class Bottle : SimplePolymerItem(Settings().maxCount(1), model.item()) {
     companion object {
         val id = RadioLampEngine.id("depers_bottle")
-        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))
+        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/totems/"))
     }
     override fun getPolymerCustomModelData(itemStack: ItemStack?, player: ServerPlayerEntity?) = model.value()
 
