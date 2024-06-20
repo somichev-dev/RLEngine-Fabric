@@ -14,7 +14,7 @@ import net.minecraft.world.World
 class Fan : CustomTotemItem() {
     companion object {
         val id = RadioLampEngine.id("depers_fan")
-        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))
+        val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/totems/"))
     }
     override fun getPolymerCustomModelData(itemStack: ItemStack?, player: ServerPlayerEntity?) = model.value()
 
