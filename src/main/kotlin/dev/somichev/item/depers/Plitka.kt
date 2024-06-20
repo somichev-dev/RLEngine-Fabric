@@ -1,6 +1,7 @@
 package dev.somichev.item.depers
 
 import dev.somichev.RadioLampEngine
+import dev.somichev.item.CustomTotemItem
 import eu.pb4.polymer.core.api.item.SimplePolymerItem
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils
 import net.minecraft.entity.Entity
@@ -16,7 +17,7 @@ import net.minecraft.util.math.Box
 import net.minecraft.world.World
 import kotlin.random.Random
 
-class Plitka : SimplePolymerItem(Settings().maxCount(1), model.item()) {
+class Plitka : CustomTotemItem() {
     companion object {
         val id = RadioLampEngine.id("depers_plitka")
         val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))

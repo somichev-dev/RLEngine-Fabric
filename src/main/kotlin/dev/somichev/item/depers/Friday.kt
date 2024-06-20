@@ -1,6 +1,7 @@
 package dev.somichev.item.depers
 
 import dev.somichev.RadioLampEngine
+import dev.somichev.item.CustomTotemItem
 import eu.pb4.polymer.core.api.item.SimplePolymerItem
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils
 import net.minecraft.component.DataComponentTypes
@@ -14,7 +15,7 @@ import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.World
 
-class Friday : SimplePolymerItem(Settings().maxCount(1), model.item()) {
+class Friday : CustomTotemItem() {
     companion object {
         val id = RadioLampEngine.id("depers_friday")
         val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))

@@ -1,6 +1,7 @@
 package dev.somichev.item.depers
 
 import dev.somichev.RadioLampEngine
+import dev.somichev.item.CustomTotemItem
 import eu.pb4.polymer.core.api.item.SimplePolymerItem
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils
 import net.minecraft.entity.Entity
@@ -12,7 +13,7 @@ import net.minecraft.item.Items
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.World
 
-class Breeze : SimplePolymerItem(Settings().maxCount(1), model.item()) {
+class Breeze : CustomTotemItem() {
     companion object {
         val id = RadioLampEngine.id("depers_breeze")
         val model = PolymerResourcePackUtils.requestModel(Items.TOTEM_OF_UNDYING, id.withPrefixedPath("item/"))

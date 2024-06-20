@@ -11,7 +11,9 @@
     "player_events.ServerPlayerEntityMixin",
     "player_events.ServerPlayNetworkHandlerMixin",
 
-    "player_attributes.PlayerEntityMixin"
+    "player_attributes.PlayerEntityMixin",
+
+    "totems.LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
