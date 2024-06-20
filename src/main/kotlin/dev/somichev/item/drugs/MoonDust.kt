@@ -17,7 +17,7 @@ import net.minecraft.sound.SoundEvents
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
-import util.EffectData
+import dev.somichev.util.EffectData
 
 class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.item()) {
     companion object{

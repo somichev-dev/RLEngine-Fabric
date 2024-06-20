@@ -11,31 +11,26 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.math.MathHelper.lerp
+import net.minecraft.world.GameMode
 
 object TemperaturePlayerTickListener : PlayerTickStart {
-    val inertia = 0.002
+    private const val INERTIA = 0.002
 
     override fun onPlayerTickStart(player: ServerPlayerEntity, server: MinecraftServer) {
         server.bossBarManager.get(RadioLampEngine.id(player.uuidAsString.lowercase()))?.let {
-            val temperature = updatePlayerTemperature(player)
+            val temperature = calculatePlayerTemperature(player)
 
-            TemperatureEffects.applyTo(player)
+            if (player.interactionManager.gameMode != GameMode.SPECTATOR &&
+                player.attributes.hasAttribute(RadioLampEngineEntityAttributes.temperature)) {
+                player.attributes.getCustomInstance(RadioLampEngineEntityAttributes.temperature)!!.baseValue = temperature
+                TemperatureEffects.applyTo(player)
+            }
 
             it.value = temperature.toInt() + 100
             it.name = Text.literal("${temperature.toInt()}°C")
         }
     }
 
-    private fun updatePlayerTemperature(player: PlayerEntity): Double {
-        val currentTemperature = player.attributes.getValue(RadioLampEngineEntityAttributes.temperature)
-
-        if (player.attributes.hasAttribute(RadioLampEngineEntityAttributes.temperature)) {
-            val nextTemperature = lerp(inertia, currentTemperature, PlayerWarmness.calculate(player))
-            player.attributes.getCustomInstance(RadioLampEngineEntityAttributes.temperature)!!.baseValue = nextTemperature
-
-            return nextTemperature
-        }
-
-        return currentTemperature
-    }
+    private fun calculatePlayerTemperature(player: PlayerEntity): Double =
+        lerp(INERTIA, player.attributes.getValue(RadioLampEngineEntityAttributes.temperature), PlayerWarmness.calculate(player))
 }

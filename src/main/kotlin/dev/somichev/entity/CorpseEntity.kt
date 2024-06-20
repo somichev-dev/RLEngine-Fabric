@@ -3,6 +3,8 @@ package dev.somichev.entity
 import com.mojang.authlib.GameProfile
 import com.mojang.serialization.Dynamic
 import dev.somichev.RadioLampEngine
+import dev.somichev.climate.calculation.PlayerWarmness
+import dev.somichev.entity.attribute.RadioLampEngineEntityAttributes
 import dev.somichev.gui.PlayerInventoryMenu
 import dev.somichev.mixin.EntityAccessor
 import dev.somichev.world.PositionState
@@ -122,6 +124,11 @@ class CorpseEntity(type: EntityType<CorpseEntity>, world: World) : Entity(type, 
                 player.sendMessage(server.messageDecorator.decorate(corpse, Text.literal("До связи...")))
                 return ActionResult.FAIL
             }
+
+            corpse.attributes.getCustomInstance(RadioLampEngineEntityAttributes.temperature)?.let {
+                it.baseValue = 0.0
+            }
+
             corpse.teleport(world as ServerWorld, x, y, z, yaw, pitch)
             corpse.changeGameMode(GameMode.SURVIVAL)
             player.incrementStat(Stats.USED.getOrCreateStat(Items.TOTEM_OF_UNDYING))

@@ -3,7 +3,7 @@ package dev.somichev.climate
 import dev.somichev.entity.attribute.RadioLampEngineEntityAttributes
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.entity.player.PlayerEntity
-import util.EffectData
+import dev.somichev.util.EffectData
 
 object TemperatureEffects {
     private val effects: Map<ClosedFloatingPointRange<Double>, List<EffectData>> =
@@ -30,7 +30,7 @@ object TemperatureEffects {
                 ),
             50.0..Double.POSITIVE_INFINITY to
                 listOf(
-                    EffectData(StatusEffects.NAUSEA, 2 * 20, 0),
+                    EffectData(StatusEffects.WITHER, 2 * 20, 0),
                 ),
         )
 

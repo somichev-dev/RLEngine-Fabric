@@ -1,4 +1,4 @@
-package util
+package dev.somichev.util
 
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.entity.effect.StatusEffectInstance
