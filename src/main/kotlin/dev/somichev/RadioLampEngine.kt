@@ -2,9 +2,12 @@ package dev.somichev
 
 import dev.somichev.block.RadioLampEngineBlocks
 import dev.somichev.entity.RadioLampEngineEntityTypes
+import dev.somichev.entity.attribute.RadioLampEngineEntityAttributes
 import dev.somichev.events.PlayerEvents
 import dev.somichev.item.RadioLampEngineItemGroups
 import dev.somichev.item.RadioLampEngineItems
+import dev.somichev.listener.climate.TempBarJoinListener
+import dev.somichev.listener.climate.TemperaturePlayerTickListener
 import dev.somichev.world.PositionState
 import dev.somichev.world.RadioLampPersistentState
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils
@@ -32,6 +35,7 @@ object RadioLampEngine : ModInitializer {
         RadioLampEngineBlocks
         RadioLampEngineItems
         RadioLampEngineItemGroups
+        RadioLampEngineEntityAttributes
         RadioLampEngineEntityTypes.init()
         logger.info("W E L C O M E  T O  J U L E!")
 
@@ -67,6 +71,13 @@ object RadioLampEngine : ModInitializer {
                 player.sendMessage(text.formatted(Formatting.BOLD))
             }
         }
+
+        registerListeners()
+    }
+
+    fun registerListeners() {
+        PlayerEvents.JOIN_EVENT.register(TempBarJoinListener)
+        PlayerEvents.TICK_START_EVENT.register(TemperaturePlayerTickListener)
     }
 
     fun log(s: String) = logger.info(s)

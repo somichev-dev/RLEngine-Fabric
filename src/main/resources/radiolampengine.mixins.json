@@ -9,7 +9,9 @@
 
     "player_events.PlayerManagerMixin",
     "player_events.ServerPlayerEntityMixin",
-    "player_events.ServerPlayNetworkHandlerMixin"
+    "player_events.ServerPlayNetworkHandlerMixin",
+
+    "player_attributes.PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

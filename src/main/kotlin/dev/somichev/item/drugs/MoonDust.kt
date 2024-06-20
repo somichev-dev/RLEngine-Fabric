@@ -1,6 +1,7 @@
 package dev.somichev.item.drugs
 
 import dev.somichev.RadioLampEngine
+import dev.somichev.entity.attribute.RadioLampEngineEntityAttributes
 import eu.pb4.polymer.core.api.item.SimplePolymerItem
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils
 import net.minecraft.entity.effect.StatusEffect
@@ -16,6 +17,7 @@ import net.minecraft.sound.SoundEvents
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
+import util.EffectData
 
 class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.item()) {
     companion object{
@@ -24,15 +26,14 @@ class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.ite
     }
 
     override fun getPolymerCustomModelData(itemStack: ItemStack?, player: ServerPlayerEntity?): Int = model.value()
-    data class effectData(val effect: RegistryEntry<StatusEffect>, val duration: Int, val amplifier: Int)
     val effects = listOf(
-        effectData(StatusEffects.NIGHT_VISION, 20*60*10, 0),
-        effectData(StatusEffects.GLOWING, 20*60*10, 0),
-        effectData(StatusEffects.SATURATION, 20*60*10, 0),
-        effectData(StatusEffects.JUMP_BOOST, 20*60*10, 0),
-        effectData(StatusEffects.STRENGTH, 20*60*10, 1),
-        effectData(StatusEffects.REGENERATION, 20*60*10, 0),
-        effectData(StatusEffects.SPEED, 20*60*10, 1),
+        EffectData(StatusEffects.NIGHT_VISION, 20*60*10, 0),
+        EffectData(StatusEffects.GLOWING, 20*60*10, 0),
+        EffectData(StatusEffects.SATURATION, 20*60*10, 0),
+        EffectData(StatusEffects.JUMP_BOOST, 20*60*10, 0),
+        EffectData(StatusEffects.STRENGTH, 20*60*10, 1),
+        EffectData(StatusEffects.REGENERATION, 20*60*10, 0),
+        EffectData(StatusEffects.SPEED, 20*60*10, 1),
     )
     override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val itemStack = user.getStackInHand(hand)
@@ -47,7 +48,7 @@ class MoonDust: SimplePolymerItem(Settings().maxCount(64).fireproof(), model.ite
         )
 
         effects.forEach {
-            user.addStatusEffect(StatusEffectInstance(it.effect, it.duration, it.amplifier))
+            user.addStatusEffect(it.instantiate())
         }
         itemStack.count -= 1
 
